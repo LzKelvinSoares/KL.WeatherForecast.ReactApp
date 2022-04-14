@@ -23,7 +23,7 @@ export default function ForecastTableCP(): JSX.Element {
                      {
                          forecastDays.map((item: ForecastDay, i: number) => (
                              <DayGrid key={i}>
-                                 <div className="forecast-day-name forecast-day-property">
+                                 <div data-testid="forecast-name-test" className="forecast-day-name forecast-day-property">
                                      {item.name}, {formatDate(item.date.toString())}
                                  </div>
                                  <div className="forecast-day-weather">
