@@ -14,16 +14,13 @@ const InputGroup = styled.div`
     }
 `;
 
-interface InputProps {
-    hasError: boolean
-}
-
-const Input = styled.input<InputProps>`
+const Input = styled.input`
     width: 500px;
     height: 50px;
     border-radius: 8px; 
     border: 1px solid  ${({ theme }) => theme.default.border};
     margin-right: 10px;
+    padding: 5px;
 `;
 
 const Button = styled.button`

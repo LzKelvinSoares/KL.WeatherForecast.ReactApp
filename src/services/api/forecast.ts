@@ -15,12 +15,15 @@ async function getWeatherForecasts(url: string): Promise<HttpResponse<ForecastRe
 }
 
 function forecastsNotEmpty(response: ForecastResponse): boolean {
-    return response.properties.forecast != null &&
+    return response.properties &&
+        response.properties.forecast != null &&
         response.properties.forecast != '';
 }
 
 function forecastsPeriodsNotEmpty(response: ForecastResponse): boolean {
-    return response.properties.periods.length > 0;
+    return response.properties &&
+        response.properties.periods &&
+        response.properties.periods.length > 0;
 }
 
 export {

@@ -14,7 +14,7 @@ type ErrorData = {
   error: string;
 }
 
-export default async function(
+export default async function forecastsById(
   req: NextApiRequest,
   res: NextApiResponse<Data | ErrorData>
 ) {
