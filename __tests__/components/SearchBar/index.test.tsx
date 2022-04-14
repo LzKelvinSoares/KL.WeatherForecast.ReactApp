@@ -6,8 +6,8 @@ import { WeatherForecastProvider } from '../../../src/contexts/WeatherForecastCo
 import { WeatherForecastProviderData } from '../../../src/models/contexts/WeatherForecast/provider-data.model';
 import SearchBar from '../../../src/components/SearchBar';
 
-describe('ForecastTable', () => {
-    it('renders the table with the forecasts', () => {
+describe('SearchBar', () => {
+    it('renders the search bar', () => {
   
       const providerData = {
         forecastDays: [],
