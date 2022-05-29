@@ -2,8 +2,8 @@ import { ForecastDay } from '../models/forecast-day.model';
 import { Weather } from '../models/weather.model';
 import getWeatherForecast from './http/getWeatherForecasts';
 
-export default async function searchForecast(fullAddress: string): Promise<ForecastDay[]> {
-    const weatherForecasts = await getWeatherForecast(fullAddress);
+export default async function searchForecast(fullAddress: string, daysToForecast: number): Promise<ForecastDay[]> {
+    const weatherForecasts = await getWeatherForecast(fullAddress, daysToForecast);
     return _loadForecastsByDate(weatherForecasts);
 }
 

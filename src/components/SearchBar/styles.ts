@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const FormGroup = styled.form`
     display: flex;
@@ -14,13 +14,22 @@ const InputGroup = styled.div`
     }
 `;
 
-const Input = styled.input`
-    width: 500px;
+const InputBase = css`
     height: 50px;
     border-radius: 8px; 
     border: 1px solid  ${({ theme }) => theme.default.border};
     margin-right: 10px;
     padding: 5px;
+`;
+
+const Input = styled.input`
+    ${InputBase}
+    width: 500px;
+`;
+
+const Select = styled.select`
+    ${InputBase}
+    width: 150px;
 `;
 
 const Button = styled.button`
@@ -48,4 +57,4 @@ const Button = styled.button`
     }
 `;
 
-export { FormGroup, InputGroup, Input, Button };
+export { FormGroup, InputGroup, Input, Button, Select };

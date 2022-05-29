@@ -2,10 +2,11 @@ import { useState } from 'react';
 import useWeatherForecastContext from '../../contexts/WeatherForecastContext';
 import { ForecastDay } from '../../models/forecast-day.model';
 import searchForecast from '../../services/searchForecast';
-import { Button, FormGroup, Input, InputGroup } from './styles'; 
+import { Button, FormGroup, Input, InputGroup, Select } from './styles'; 
 
 export default function SearchBarCP(): JSX.Element {
     const [address, setAddress] = useState('');
+    const [daysToForecast, setDaysToForecast] = useState(6);
     const [hasError, setHasError] = useState(false);
 
     const {
@@ -22,7 +23,7 @@ export default function SearchBarCP(): JSX.Element {
         setForecastDays([]);
         let forecasts: ForecastDay[] = [];
         try {
-            forecasts = await searchForecast(address);
+            forecasts = await searchForecast(address, daysToForecast);
             setForecastDays(forecasts);
         } catch(err) {
             setErrorText(err.message);
@@ -34,6 +35,12 @@ export default function SearchBarCP(): JSX.Element {
       target,
     }: React.ChangeEvent<HTMLInputElement>): void {
         setAddress(target.value);
+    }
+
+    function handleChangeDays({
+      target,
+    }: React.ChangeEvent<HTMLInputElement>): void {
+        setDaysToForecast(parseInt(target.value));
     }
 
     return (
@@ -53,6 +60,26 @@ export default function SearchBarCP(): JSX.Element {
                         data-testid="search-address-input"
                         onChange={(event): void => handleChangeAddress(event)}
                     />
+                </InputGroup>
+                <InputGroup>
+                    <label htmlFor="days-select">
+                        Days to forecast: </label>
+                    <Select
+                        id="days-select"
+                        name="days-select"
+                        value={daysToForecast}
+                        data-testid="search-days-select"
+                        onChange={(event): void => handleChangeDays(event)}
+                    >
+                        {
+                            [...new Array(7)]
+                            .map((_, index) => 
+                                (
+                                    <option key={index} value={index}>{index + 1}</option>
+                                )
+                            )
+                        }
+                    </Select>
                 </InputGroup>
                 <Button disabled={isLoading}>Search</Button>
             </FormGroup>
